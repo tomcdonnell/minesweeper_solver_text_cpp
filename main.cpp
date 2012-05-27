@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
       break;
     default:
       std::cout << "Minsweeper Text\n"
-           << "Usage: minesweeper_text <int n_rows> <int n_cols> <int n_mines>\n";
+                << "Usage: minesweeper_text <int n_rows> <int n_cols> <int n_mines>\n";
       exit(EXIT_SUCCESS);
    }
 

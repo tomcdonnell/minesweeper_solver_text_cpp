@@ -30,52 +30,6 @@ namespace
  bool autoExplore(mineField &M, mineFieldProbMap &P);
 }
 
-// Main function definition. ///////////////////////////////////////////////////////////////////////
-
-int main(int argc, char *argv[])
-{
-   using namespace minesweeper;
-
-   using std::cin;
-   using std::cout;
-   using std::endl;
-
-   int n_rows, n_cols, n_mines;
-   bool exitGame, gameOver, semiAutomate = true;
-   square s;
-   char choice;
-   char *settingsTypeStr;
-
-   switch (argc)
-   {
-    case 1:
-      // Use default arguments.
-      settingsTypeStr = "default";
-      n_rows  =  32;
-      n_cols  =  32;
-      n_mines = 200;
-      break;
-    case 4:
-      // Use user-supplied arguments.
-      settingsTypeStr = "user supplied";
-      n_rows  = atoi(argv[1]);
-      n_cols  = atoi(argv[2]);
-      n_mines = atoi(argv[3]);
-      break;
-    default:
-      cout << "Minsweeper Text\n"
-           << "Usage: minesweeper_text <int n_rows> <int n_cols> <int n_mines>\n";
-      exit(EXIT_SUCCESS);
-   }
-
-   cout << "Using " << settingsTypeStr << " settings of "
-        << n_rows  << " rows, "
-        << n_cols  << " cols, "
-        << n_mines << " mines.\n\n";
-
-   return playGame(n_rows, n_cols, n_mines);
-}
-
 // File-scope function definitions. ////////////////////////////////////////////////////////////////
 
 namespace
@@ -88,10 +42,19 @@ namespace
   */
  int playGame(int n_rows, int n_cols, int n_mines)
  {
+    using std::cout;
+    using std::cin;
+    using std::endl;
+
     mineField        M(n_rows, n_cols, n_mines);
     mineFieldProbMap P(&M);
+
+    square s;
  
-    exitGame = false;
+    bool gameOver, exitGame = false, semiAutomate = true;
+
+    char choice;
+
     while (!exitGame)
     {
        M.reset();
@@ -198,5 +161,48 @@ namespace
  }
 
 } // End anonymous namespace.
+
+// Main function definition. ///////////////////////////////////////////////////////////////////////
+
+int main(int argc, char *argv[])
+{
+   using namespace minesweeper;
+
+   using std::cin;
+   using std::cout;
+   using std::endl;
+
+   int n_rows, n_cols, n_mines;
+   std::string settingsTypeStr;
+
+   switch (argc)
+   {
+    case 1:
+      // Use default arguments.
+      settingsTypeStr = "default";
+      n_rows  =  32;
+      n_cols  =  32;
+      n_mines = 200;
+      break;
+    case 4:
+      // Use user-supplied arguments.
+      settingsTypeStr = "user supplied";
+      n_rows  = atoi(argv[1]);
+      n_cols  = atoi(argv[2]);
+      n_mines = atoi(argv[3]);
+      break;
+    default:
+      std::cout << "Minsweeper Text\n"
+           << "Usage: minesweeper_text <int n_rows> <int n_cols> <int n_mines>\n";
+      exit(EXIT_SUCCESS);
+   }
+
+   std::cout << "Using " << settingsTypeStr << " settings of "
+             << n_rows  << " rows, "
+             << n_cols  << " cols, "
+             << n_mines << " mines.\n\n";
+
+   return playGame(n_rows, n_cols, n_mines);
+}
 
 /*******************************************END*OF*FILE********************************************/

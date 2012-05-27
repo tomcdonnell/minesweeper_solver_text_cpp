@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <cstdlib>
 
 // Public function definitions. ////////////////////////////////////////////////////////////////////
 

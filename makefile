@@ -3,7 +3,7 @@
 minesweeper_text:	main.o minefield.o mineprob.o
 	g++ -o minesweeper_text main.o minefield.o mineprob.o
 
-main.o: main.cpp minefield.h mineprob.h
+main.o: minefield.h mineprob.h
 	g++ -c -Wall main.cpp
 
 minefield.o: minefield.h
